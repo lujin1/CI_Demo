@@ -1,0 +1,8 @@
+---
+applications:
+  - name: helloworld-0.0.1
+    memory: 512M
+    instances: 1
+    path: helloworld-0.0.1.jar
+    host: helloworld-0.0.1-orgName-spaceName
+    buildpacks: java_buildpack_offline

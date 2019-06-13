@@ -1,0 +1,17 @@
+pipeline {
+  agent { label 'docker-dind' }
+  stages {
+    stage('build') {
+      steps {
+        container('docker-dind'){
+        retry(3){
+            git 'https://github.com/xiaojin525/CI_Demo.git'
+            sh 'cd helloworld && docker build -t harbor.eastasia.cloudapp.azure.com/lujin/test:v1 .'
+            sh 'docker login harbor.eastasia.cloudapp.azure.com -u lu.jin@advantech.com.cn -p 1qazXSW@'
+            sh 'docker push harbor.eastasia.cloudapp.azure.com/lujin/test:v1'
+            }
+        }
+      }
+    }
+  }
+}
