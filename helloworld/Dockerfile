@@ -3,7 +3,7 @@ ADD . /opt
 WORKDIR /opt
 RUN mvn package
 
-FROM minio/mc AS UploadBlob
+FROM harbor.wise-paas.io/library/mc:v1 AS UploadBlob
 COPY --from=build-env /opt /opt
 RUN mkdir helloword && cp /opt/target/*.jar helloword && cp /opt/manifest.yml helloword
 WORKDIR /helloword
